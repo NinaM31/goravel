@@ -12,3 +12,16 @@ func (grvl *Goravel) CreateDirIfNoExist(path string) error {
 	}
 	return nil
 }
+
+func (grvl *Goravel) CreateFileIfNoExists(path string) error {
+	var _, err = os.Stat(path)
+	if os.IsNotExist(err) {
+		var file, err = os.Create(path)
+		if err != nil {
+			return err
+		}
+
+		defer file.Close()
+	}
+	return nil
+}
