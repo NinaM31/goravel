@@ -16,6 +16,7 @@ func (grvl *Goravel) routes() http.Handler {
 		mux.Use(middleware.Logger)
 	}
 	mux.Use(middleware.Recoverer)
+	mux.Use(grvl.SessionLoad)
 
 	return mux
 }
